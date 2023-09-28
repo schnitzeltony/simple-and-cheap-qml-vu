@@ -13,7 +13,7 @@ Window {
     Label {
         id: label
         anchors.top: parent.top
-        text: slider.scaled
+        text: slider.actual
     }
 
     readonly property real nominal: 100
@@ -25,7 +25,7 @@ Window {
         width: window.width * 0.25
         height: 100
         orientation: Qt.Horizontal
-        readonly property real scaled: value * nominal * maxFactor
+        readonly property real actual: value * nominal * maxFactor
     }
 
 
@@ -35,7 +35,7 @@ Window {
         anchors.top: slider.bottom
 
         id: vu
-        property real actual: slider.scaled
+        property real actual: slider.actual
         property real nominal: window.nominal
         property real overshootFactor: window.maxFactor
 
@@ -65,12 +65,12 @@ Window {
 
         Rectangle {
             id: topRect
+            color: "grey"
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
             height: parent.height * (1 - vu.actual / (vu.overshootFactor * vu.nominal))
 
-            color: "grey"
         }
     }
 
